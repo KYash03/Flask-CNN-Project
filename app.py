@@ -31,4 +31,4 @@ def main_page_predict():
     return render_template("index.html", prediction=class_names[np.argmax(prediction[0])])
 
 
-app.run(debug=True)
+app.run(port=2222, debug=True)
