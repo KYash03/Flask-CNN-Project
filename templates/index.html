@@ -2,4 +2,15 @@
 
 {% block content %}
 
+<h2>Pneumonia Detector</h2>
+
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" name="image-file">
+    <input type="submit" value="predict-image">
+</form>
+
+{% if prediction %}
+<p>{{prediction}}</p>
+{% endif %}
+
 {% endblock %}
