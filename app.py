@@ -31,4 +31,4 @@ def main_page_predict():
     return render_template("index.html", prediction=class_names[np.argmax(prediction[0])].capitalize() + "; " + str(round(prediction[0][np.argmax(prediction[0])] * 100, 2)) + "%")
 
 
-app.run(port=2222, debug=True)
+app.run(debug=True)
