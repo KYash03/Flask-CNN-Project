@@ -18,7 +18,7 @@ def main_page():
 @app.route("/", methods=["POST"])
 def main_page_predict():
     image_file = request.files['image-file']
-    image_path = "./images/" + image_file.filename
+    image_path = "/tmp/" + image_file.filename
     image_file.save(image_path)
 
     image = load_img(image_path,
