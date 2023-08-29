@@ -1,3 +1,5 @@
+import base64
+from io import BytesIO
 import numpy as np
 
 from flask import Flask, render_template, request
@@ -28,7 +30,18 @@ def main_page_predict():
     image_array = image_array / 255.0
     prediction = model.predict(image_array)
     class_names = ["normal", "pneumonia"]
-    return render_template("index.html", prediction=class_names[np.argmax(prediction[0])].capitalize() + "; " + str(round(prediction[0][np.argmax(prediction[0])] * 100, 2)) + "%")
+    return render_template("index.html", prediction=class_names[np.argmax(prediction[0])].capitalize() + ", " + str(round(prediction[0][np.argmax(prediction[0])] * 100, 2)) + "%")
+
+
+client = app.test_client()
+image_path = "test_images/test_image_pneumonia.jpeg"
+with open(image_path, "rb") as image_file:
+    image_data = image_file.read()
+
+response = client.post("/", data={"image-file": (BytesIO(image_data),
+                       "test_image.jpeg")}, content_type="multipart/form-data")
+
+print(response.data)
 
 
 if __name__ == "__main__":
