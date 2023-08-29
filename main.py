@@ -1,4 +1,6 @@
-from io import BytesIO
+# ../google-cloud-sdk/bin/gcloud app deploy
+# ../google-cloud-sdk/bin/gcloud app browse
+
 import numpy as np
 
 from flask import Flask, render_template, request
