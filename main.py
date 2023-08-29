@@ -32,16 +32,5 @@ def main_page_predict():
     return render_template("index.html", prediction=class_names[np.argmax(prediction[0])].capitalize() + ", " + str(round(prediction[0][np.argmax(prediction[0])] * 100, 2)) + "%")
 
 
-client = app.test_client()
-image_path = "test_images/test_image_pneumonia.jpeg"
-with open(image_path, "rb") as image_file:
-    image_data = image_file.read()
-
-response = client.post("/", data={"image-file": (BytesIO(image_data),
-                       "test_image.jpeg")}, content_type="multipart/form-data")
-
-print(response.data)
-
-
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
